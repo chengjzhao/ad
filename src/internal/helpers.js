@@ -145,6 +145,7 @@ module.exports = {
         }
       }
       client.add(fullDN, object, (err, data) => {
+        client.unbind();
         if (err) {
           /* istanbul ignore next */
           return reject(err);
@@ -188,6 +189,7 @@ module.exports = {
         return reject(error);
       }
       client.del(dn, async (err, data) => {
+        client.unbind();
         if (error) {
           /* istanbul ignore next */
           return reject(error);
@@ -206,6 +208,7 @@ module.exports = {
       }
       try {
         client.modifyDN(oldDN, newDN, err => {
+          client.unbind();
           if (err) {
             /* istanbul ignore next */
             return reject({ message: err.message });
